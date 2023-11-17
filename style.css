@@ -1,1 +1,155 @@
 
+@import url('https://fonts.google.com/specimen/Red+Hat+Display?query=Red+Hat+Display');
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+
+@use "@material";
+
+
+body{
+background-color: #f0f0c9;
+}
+
+#menu{
+background-color: #124e72;
+padding: 0.5% 0;
+margin: 0 0 0.15% 0;
+}
+
+#menu ul{
+padding: 5 3;
+}
+
+#menu a{
+font-size: 40px;
+font-family: 'PaytonOne', sans-serif;
+color: #b4e0fa;
+}
+
+p{
+font-size:20px;
+font-family: 'RedHatDisplay', sans-serif;
+color: #6e0e0a;
+}
+
+nav ul{
+list-style: none;
+text-align: center;
+margin: 0px;
+padding: 0px;
+}
+
+nav li{
+display: inline;
+vertical-align: middle;
+
+}
+
+img{
+padding: 1px;
+width: 150px;
+}
+
+.informações{
+padding: 5px 220px 5px 130px;
+}
+
+.tradutor{
+padding: 5px 220px 5px 130px;
+}
+
+#titulo{
+text-align: right;
+}
+
+.modeloia{
+
+}
+
+
+
+
+
+
+body {
+--mdc-theme-primary: #d74e09;
+--mdc-theme-on-primary: #f0f0c9;
+}
+
+em {
+font-weight: bold;
+}
+
+video {
+clear: both;
+display: block;
+transform: rotateY(180deg);
+-webkit-transform: rotateY(180deg);
+-moz-transform: rotateY(180deg);
+}
+
+section {
+opacity: 1;
+transition: opacity 500ms ease-in-out;
+}
+
+
+.removed {
+display: none;
+}
+
+.invisible {
+opacity: 0.2;
+}
+
+.note {
+font-size: 130%;
+}
+
+.videoView,
+.detectOnClick {
+position: relative;
+float: left;
+width: 48%;
+margin: 2% 1%;
+cursor: pointer;
+}
+
+.videoView p,
+.detectOnClick p {
+position: absolute;
+padding: 5px;
+background-color: #007f8b;
+color: #fff;
+border: 1px dashed rgba(255, 255, 255, 0.7);
+z-index: 2;
+font-size: 12px;
+margin: 0;
+}
+
+.highlighter {
+background: rgba(0, 255, 0, 0.25);
+border: 1px dashed #fff;
+z-index: 1;
+position: absolute;
+}
+
+.canvas {
+z-index: 1;
+position: absolute;
+pointer-events: none;
+}
+
+.output_canvas {
+transform: rotateY(180deg);
+-webkit-transform: rotateY(180deg);
+-moz-transform: rotateY(180deg);
+}
+
+.detectOnClick {
+z-index: 0;
+}
+
+.detectOnClick img {
+width: 100%;
+}
+
