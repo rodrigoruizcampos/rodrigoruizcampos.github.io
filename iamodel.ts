@@ -1,4 +1,3 @@
-console.log("Olá")
 import {
 HandLandmarker,
 FilesetResolver
