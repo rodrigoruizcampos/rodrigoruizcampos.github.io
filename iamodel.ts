@@ -20,3 +20,5 @@ numHands: 2
 });
 demosSection.classList.remove("invisible");
 };
+
+console.log("Olá")
