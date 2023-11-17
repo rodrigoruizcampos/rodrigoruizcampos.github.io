@@ -1,0 +1,186 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<link rel="importIAModel" href="iamodel.js">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
+
+<script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+<meta charset="utf-8" />
+
+
+<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<nav id = menu>
+<ul>
+<li>
+<img src="logoOficial.png" alt="logo">
+</li>
+
+<li class = "informações">
+<a href = "index.html">Informações</a>
+</li>
+
+<li class = "tradutor">
+<a href = "tradutor.html">Tradutor</a>
+</li>
+</ul>
+</nav>
+
+
+<nav id = modeloia>
+<ul>
+<li>
+
+<div id="liveView" class="videoView">
+<button id="webcamButton" class="mdc-button mdc-button--raised">
+<span class="mdc-button__ripple"></span>
+<span class="mdc-button__label">ENABLE WEBCAM</span>
+</button>
+<div style="position: relative;">
+<video id="webcam" style="position: abso" autoplay playsinline></video>
+<canvas class="output_canvas" id="output_canvas" style="position: absolute; left: 0px; top: 0px;"></canvas>
+</div>
+</div>
+
+<script>
+
+createHandLandmarker();
+
+const imageContainers = document.getElementsByClassName("detectOnClick");
+
+for (let i = 0; i < imageContainers.length; i++) {
+imageContainers[i].children[0].addEventListener("click", handleClick);
+}
+
+async function handleClick(event) {
+if (!handLandmarker) {
+console.log("Wait for handLandmarker to load before clicking!");
+return;
+}
+
+if (runningMode === "VIDEO") {
+runningMode = "IMAGE";
+await handLandmarker.setOptions({ runningMode: "IMAGE" });
+}
+const allCanvas = event.target.parentNode.getElementsByClassName("canvas");
+for (var i = allCanvas.length - 1; i >= 0; i--) {
+const n = allCanvas[i];
+n.parentNode.removeChild(n);
+}
+
+const handLandmarkerResult = handLandmarker.detect(event.target);
+console.log(handLandmarkerResult.handednesses[0][0]);
+const canvas = document.createElement("canvas");
+canvas.setAttribute("class", "canvas");
+canvas.setAttribute("width", event.target.naturalWidth + "px");
+canvas.setAttribute("height", event.target.naturalHeight + "px");
+canvas.style =
+"left: 0px;" +
+"top: 0px;" +
+"width: " +
+event.target.width +
+"px;" +
+"height: " +
+event.target.height +
+"px;";
+
+event.target.parentNode.appendChild(canvas);
+const cxt = canvas.getContext("2d");
+for (const landmarks of handLandmarkerResult.landmarks) {
+drawConnectors(cxt, landmarks, HAND_CONNECTIONS, {color: "#00FF00", lineWidth: 5});
+drawLandmarks(cxt, landmarks, { color: "#FF0000", lineWidth: 1 });
+}
+}
+
+const video = document.getElementById("webcam") as HTMLVideoElement;
+const canvasElement = document.getElementById("output_canvas") as HTMLCanvasElement;
+const canvasCtx = canvasElement.getContext("2d");
+
+const hasGetUserMedia = () => !!navigator.mediaDevices?.getUserMedia;
+
+if (hasGetUserMedia()) {
+enableWebcamButton = document.getElementById("webcamButton");
+enableWebcamButton.addEventListener("click", enableCam);
+} else {
+console.warn("getUserMedia() is not supported by your browser");
+}
+
+function enableCam(event) {
+if (!handLandmarker) {
+console.log("Wait! objectDetector not loaded yet.");
+return;
+}
+
+if (webcamRunning === true) {
+webcamRunning = false;
+enableWebcamButton.innerText = "ENABLE PREDICTIONS";
+} else {
+webcamRunning = true;
+enableWebcamButton.innerText = "DISABLE PREDICTIONS";
+}
+
+const constraints = {
+video: true
+};
+
+navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+video.srcObject = stream;
+video.addEventListener("loadeddata", predictWebcam);
+});
+}
+
+let lastVideoTime = -1;
+let results = undefined;
+console.log(video);
+async function predictWebcam() {
+canvasElement.style.width = video.videoWidth;;
+canvasElement.style.height = video.videoHeight;
+canvasElement.width = video.videoWidth;
+canvasElement.height = video.videoHeight;
+
+if (runningMode === "IMAGE") {
+runningMode = "VIDEO";
+await handLandmarker.setOptions({ runningMode: "VIDEO" });
+}
+let startTimeMs = performance.now();
+if (lastVideoTime !== video.currentTime) {
+lastVideoTime = video.currentTime;
+results = handLandmarker.detectForVideo(video, startTimeMs);
+}
+canvasCtx.save();
+canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+if (results.landmarks) {
+for (const landmarks of results.landmarks) {
+drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
+color: "#00FF00",
+lineWidth: 5
+});
+drawLandmarks(canvasCtx, landmarks, { color: "#FF0000", lineWidth: 2 });
+}
+}
+canvasCtx.restore();
+
+if (webcamRunning === true) {
+window.requestAnimationFrame(predictWebcam);
+}
+}
+</script>
+</li>
+
+<li>
+<script>
+////////// - lista c a letra correspondente ao sinal identificado impressa
+</script>
+</li>
+</ul>
+</body>
+</html>
