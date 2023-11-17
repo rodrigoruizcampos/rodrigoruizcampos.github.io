@@ -1,45 +1,37 @@
-<!DOCTYPE html>
 <html>
-
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-    canvas {
-      display: block;
-    }  
-  </style>
+<link rel="stylesheet" href="style.css">
 </head>
 
-
-
-
-  
 <body>
- Hello World!
-  <script>
-    var video
-    function setup() {
-      createCanvas(400, 400);
-      video = createCapture(VIDEO)
-      video.hide()
-    }
+<nav id = menu>
+<ul>
+<li>
+<img src="logoOficial.png" alt="logo">
+</li>
 
-    function draw() {
-      background(220);
-     image(video,0,0)
-    }
+<li class = "informações">
+<a href = "index.html">Informações</a>
+</li>
 
-    
-  </script>
+<li class = "tradutor">
+<a href = "tradutor.html">Tradutor</a>
+</li>
+</ul>
+</nav>
+
+<p>Este projeto, elaborado por edtudantes da Escola Mobile, Beatriz Freitas, Juliana Gaia, Marianne Feitosa e Sophia Moraes, visa providenciar apoio e inclusão a pessoas com deficiência auditiva.</p>
+
+<p>Escolhemos “Sinaliza” como o nome deste site, uma vez que é marcante e fácil de lembrar. Além disso é bem descritivo sobre a função do site, que traduz sinais de libras para o português escrito. Para mais, o nosso logo representa o sinal de união em libras, já que nosso projeto visa a união e integração das pessoas na sociedade de forma que prevaleça a equidade.</p>
+
+<p>De acordo com dados coletados no site “Helpie!”, uma pesquisa do Instituto Locomotiva no ano de 2019, quase 11 milhões de brasileiros sofrem de alguma insuficiência auditiva. Além disso, a OMS afirma que até 2050, serão mais de 1 bilhão de pessoas surdas no mundo.</p>
+
+<p>Uma pesquisa do Instituto Locomotiva e a Semana da Acessibilidade Surda de 2019 mostra que a população surda se enquadra em porcentagens muito baixas de formação, sendo que cerca de 7% dos surdos brasileiros têm ensino superior completo e 15% frequentaram a escola até o ensino médio. Além dos 46% que estudaram até o fundamental, também há 32% que não têm um grau de instrução. Parte do motivo para essa situação é que, de acordo com dados do Inep, apenas 3% dos professores que lecionam aulas de Libras na educação básica (1.542) têm graduação na modalidade, além da formação em pedagogia ou licenciaturas e apenas sete das 59 universidades federais brasileiras oferecem cursos de graduação em Libras (Língua Brasileira de Sinais). Atualmente, há 64 escolas bilíngues de surdos com 63.106 alunos surdos, surdo-cegos e com deficiência auditiva, número que não chega nem à metade do total de surdos brasileiros.</p>
+
+<p>Por essa razão, decidimos dedicar nosso projeto a esse grupo, que cada vez mais necessita de apoio. E, o primeiro passo para isso, é o ensino da linguagem de sinais, mas a maior dificuldade da população atualmente é que o idioma não é universal, ou seja, cada país ou região possui sinais diferentes para as mesmas palavras. Desta forma, nosso aplicativo oferece um serviço de tradução em tempo real, tanto de libras para o portugês (brasileiro), quanto de português para libras.</p>
+
+<p>Mas como que funciona? Na parte nomeada "Tradução", há uma função que usa a câmera do dispositivo de acesso para que o usuário grave o sinal em libras. Esse é reconhecido pela inteligência artificial incluida, gerando um texto ao lado com o significado do sinal em português.</p>
+
 
 </body>
-
 </html>
