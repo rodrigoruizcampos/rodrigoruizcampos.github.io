@@ -1,3 +1,4 @@
+console.log("Olá")
 import {
 HandLandmarker,
 FilesetResolver
@@ -21,4 +22,3 @@ numHands: 2
 demosSection.classList.remove("invisible");
 };
 
-console.log("Olá")
